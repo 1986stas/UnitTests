@@ -9,7 +9,7 @@ import static com.osikov.stas.unittests.ShortStringMatcher.isShortString;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
-public class MainActivityTest {
+public class MainActivityUnitTest {
 
     @Test
     public void onCreate() {
