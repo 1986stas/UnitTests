@@ -1,5 +1,6 @@
 package com.osikov.stas.unittests;
 
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
@@ -23,7 +24,8 @@ public class ShortStringMatcher extends TypeSafeMatcher<String> {
         return item.length() < length;
     }
 
-    public static Matcher<String> isShortString(int limit) {
+    static Matcher<String> isShortString(int limit) {
         return new ShortStringMatcher(limit);
     }
+    
 }
