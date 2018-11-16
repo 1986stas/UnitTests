@@ -9,14 +9,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.osikov.stas.unittests.models.Constants;
+
+
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
+
     private TextView textView;
     private EditText editText;
     private Button startActivity;
+    private Button thirdActivity;
+    private TextView intentTextView;
+    private Button intentButton;
 
-    protected Intent intent;
+    public static final int REQUEST_CODE = 1;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +33,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         startActivity = findViewById(R.id.secondActivity);
+        thirdActivity = findViewById(R.id.thirdActivity);
         textView = findViewById(R.id.view);
-        button = findViewById(R.id.button);
+        Button button = findViewById(R.id.button);
         editText = findViewById(R.id.editText);
+
+        intentTextView = findViewById(R.id.intentText);
+        intentButton = findViewById(R.id.intentButton);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,7 +51,19 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(text);
             }
         });
-        intent = new Intent(this, SecondActivityAdapter.class);
+        onClickListViewActivity();
+        onClickRecyclerViewActivity();
+
+        intentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                buttonClick();
+            }
+        });
+    }
+
+    private void onClickListViewActivity(){
+        final Intent intent = new Intent(this, SecondActivityAdapter.class);
         startActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,4 +71,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void onClickRecyclerViewActivity(){
+        final Intent intent = new Intent(this, ActivityRecyclerView.class);
+        thirdActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void buttonClick() {
+        Intent intent = new Intent(this, SecondIntentActivity.class);
+        intent.putExtra(Constants.EXTRA_ID, 1);
+        intent.putExtra(Constants.EXTRA_NAME, "Name 1");
+        startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                textView.setText(data.getStringExtra(Constants.EXTRA_RESULT));
+            } else {
+                textView.setText("Cancel");
+            }
+        }
+    }
+
 }

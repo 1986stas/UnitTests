@@ -27,5 +27,6 @@ public class ShortStringMatcher extends TypeSafeMatcher<String> {
     static Matcher<String> isShortString(int limit) {
         return new ShortStringMatcher(limit);
     }
-    
+
+
 }

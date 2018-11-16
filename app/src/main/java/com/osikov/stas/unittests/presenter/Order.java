@@ -3,6 +3,7 @@ package com.osikov.stas.unittests.presenter;
 import android.support.annotation.Nullable;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Order implements Serializable {
 
@@ -23,17 +24,19 @@ public class Order implements Serializable {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return Objects.hash(name, description);
     }
 
     @Override
     public boolean equals(@Nullable Object obj) {
         if(obj == this)
             return true;
-        if(!(obj instanceof Order))
+        if (obj == null || obj.getClass() != this.getClass()) {
             return false;
+        }
         Order order = (Order) obj;
-        return (order.description.equals(this.description) && order.name==this.name);
+        return order.description.equals(this.description)
+                && order.name.equals(this.name) && order.id == this.id;
     }
 
 

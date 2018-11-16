@@ -17,11 +17,11 @@ import java.util.List;
 
 public class SecondActivityAdapter extends AppCompatActivity {
 
-    List<Order> data = new LinkedList<>();
+    List data = new LinkedList<>();
     ListView listView;
     TextView textView;
 
-    private ArrayAdapter<Order> mAdapter;
+    private ArrayAdapter<String> mAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,13 +29,14 @@ public class SecondActivityAdapter extends AppCompatActivity {
         setContentView(R.layout.second_activity_layout);
         for (int i = 0; i < 100; i++){
             Order order = new Order();
-            order.setName("Order name " + "" + i);
-            order.setDescription("Order description " + "" + i);
+            order.setId(i);
+            order.setName("Order " + i);
+            order.setDescription("description " + i);
             data.add(order);
         }
         textView = findViewById(R.id.textview);
         listView = findViewById(R.id.lvMain);
-        mAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, data);
+        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data);
         listView.setAdapter(mAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

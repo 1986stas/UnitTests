@@ -35,5 +35,24 @@
         android:layout_height="wrap_content"
         android:text="ListView"
         android:layout_below="@id/button"/>
+    <Button
+        android:id="@+id/thirdActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RecyclerView"
+        android:layout_below="@id/secondActivity"/>
+    <TextView
+        android:id="@+id/intentText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/thirdActivity"
+        android:text="Intent Rule"
+        android:textSize="20sp"/>
+    <Button
+        android:id="@+id/intentButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/intentText"
+        android:text="Intent Rule Button"/>
 
 </RelativeLayout>

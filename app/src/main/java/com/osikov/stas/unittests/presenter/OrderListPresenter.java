@@ -1,5 +1,7 @@
 package com.osikov.stas.unittests.presenter;
 
+import android.support.test.espresso.idling.CountingIdlingResource;
+
 import java.util.List;
 
 import io.reactivex.Scheduler;
@@ -11,10 +13,16 @@ public class OrderListPresenter extends BasePresenter<OrderListContract.View> im
     private final OrderRepository orderRepository;
     private final Scheduler workScheduler, resultScheduler;
 
+    CountingIdlingResource countingIdlingResource;
+
     public OrderListPresenter(OrderRepository orderRepository, Scheduler workScheduler, Scheduler resultScheduler) {
         this.orderRepository = orderRepository;
         this.workScheduler = workScheduler;
         this.resultScheduler = resultScheduler;
+    }
+
+    void setIdlingResource(CountingIdlingResource countingIdlingResource) {
+        this.countingIdlingResource = countingIdlingResource;
     }
 
     @Override
