@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private Button startActivity;
     private Button thirdActivity;
     private TextView intentTextView;
-    private Button intentButton;
 
     public static final int REQUEST_CODE = 1;
 
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.editText);
 
         intentTextView = findViewById(R.id.intentText);
-        intentButton = findViewById(R.id.intentButton);
+        Button intentButton = findViewById(R.id.intentButton);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                textView.setText(data.getStringExtra(Constants.EXTRA_RESULT));
+                intentTextView.setText(data.getStringExtra(Constants.EXTRA_RESULT));
             } else {
-                textView.setText("Cancel");
+                intentTextView.setText("Cancel");
             }
         }
     }
